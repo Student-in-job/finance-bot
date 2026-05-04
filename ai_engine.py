@@ -17,7 +17,7 @@ def parse_spending(text, category_context):
     Rules:
     1. Select the BEST category from the list based on text and tags.
     2. Convert amount to a ROUNDED INTEGER.
-    3. Return ONLY JSON: {{"amount": int, "category": "name", "currency": "RUB"}}
+    3. Return ONLY JSON: {{"amount": int, "category": "name", "currency": "RUB", "original_text": "text"}}
     """
     response = model.generate_content(prompt)
     clean_json = response.text.replace("```json", "").replace("```", "").strip()
