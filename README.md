@@ -1,18 +1,6 @@
 # 🤖 Telegram Finance Bot (AI-Powered)
 
-## 🚀 Setup Guide
-1. Install dependencies: `pip install -r requirements.txt`
-2. Configure `.env` with your API keys and Postgres URL.
-3. Seed the `categories` table in your database.
-4. Run `python main.py`.
-5. Authenticate in Telegram with `/auth <your_pin>`.
-
-Certainly! Updating your **README.md** to include these specific setup instructions is vital for a smooth "first-run" experience. I have refined the instructions to cover both the technical environment and the external API registrations.
-
-### Updated README.md Section
-
-```markdown
-## 🛠️ Step-by-Step Setup Guide
+## 🚀 Step-by-Step Setup Guide
 
 ### 1. Register your Telegram Bot
 1. Open Telegram and search for **@BotFather**.
@@ -33,13 +21,13 @@ Certainly! Updating your **README.md** to include these specific setup instructi
    ```bash
    git clone <your-repo-url>
    cd telegram_fin_bot
-   
 ```
+
 2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
-   
 ```
+
 3. **Configure Secrets**:
    Copy `.env.example` to a new file named `.env` and fill in your keys[cite: 12]:
    ```env
@@ -64,6 +52,8 @@ python main.py
 
 ### 6. Final Authentication
 Once the bot is running, open it in Telegram and send:
-`/auth 123456` (Replace with your chosen PIN)
-This will register your Telegram ID as an Admin in the database[cite: 10].
+```bash
+/auth 123456
 ```
+(Replace with your chosen PIN)
+This will register your Telegram ID as an Admin in the database[cite: 10].
