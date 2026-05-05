@@ -1,15 +1,23 @@
 # 🤖 Telegram Finance Bot (AI-Powered)
 
+## Table of Contents
+1. [Register Telegram Bot](#register-telegram-bot)
+2. [Obtain Gemini API Key](#obtain-gemini-api-key)
+3. [Configure Secrets](#configure-secrets)
+4. [Database Initialization (Migrations)](#database-initialization-migrations)
+5. [Start the Bot](#start-the-bot)
+6. [Final Authentication](#final-authentication)
+
 ## 🚀 Step-by-Step Setup Guide
 
-### 1. Register your Telegram Bot
+### 1. Register Telegram Bot
 1. Open Telegram and search for **@BotFather**.
 2. Send the command `/newbot` and follow the instructions to name your assistant.
 3. Once created, @BotFather will provide an **API Token**. 
 4. Copy this token; you will need it for your `.env` file.
 5. **Note**: If you plan to use the bot in a Channel, add it as an Administrator with "Post Messages" permissions.
 
-### 2. Obtain your Gemini API Key
+### 2. Obtain Gemini API Key
 1. Go to [Google AI Studio](https://aistudio.google.com/).
 2. Sign in with your Google Account.
 3. Click on the **"Get API key"** button in the top left sidebar.
