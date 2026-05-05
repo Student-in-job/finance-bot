@@ -76,3 +76,65 @@ async def report_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         report_text += f"\n💰 **Total: {total_val}**"
         
         await update.message.reply_text(report_text, parse_mode="Markdown")
+
+async def list_cats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not is_user_admin(update.effective_user.id):
+        await update.message.reply_text("🔒 Admin access required.")
+        return
+
+    with SessionLocal() as session:
+        cats = session.query(Category).all()
+        if not cats:
+            await update.message.reply_text("No categories found.")
+            return
+
+        msg = "📋 **Available Categories:**\n\n"
+        for c in cats:
+            msg += f"🔹 **{c.name}** (tags: `{c.tags}`)\n"
+        
+        await update.message.reply_text(msg, parse_mode="Markdown")
+
+async def new_cat_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not is_user_admin(update.effective_user.id):
+        await update.message.reply_text("🔒 Admin access required.")
+        return
+
+    if not context.args:
+        await update.message.reply_text("Usage: /new_cat <NAME> <TAG1,TAG2,TAG3>")
+        return
+
+    parts = " ".join(context.args).split(",")
+    name = parts[0].strip().title()
+    tags = [t.strip().lower() for t in parts[1:] if t.strip()]
+
+    if not name:
+        await update.message.reply_text("❌ Invalid name.")
+        return
+
+    with SessionLocal() as session:
+        cat = Category(name=name, tags=tags)
+        session.add(cat)
+        session.commit()
+    
+    await update.message.reply_text(f"✅ Category **{name}** created with tags: {', '.join(tags)}", parse_mode="Markdown")
+
+async def delete_cat_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not is_user_admin(update.effective_user.id):
+        await update.message.reply_text("🔒 Admin access required.")
+        return
+
+    if not context.args:
+        await update.message.reply_text("Usage: /delete_cat <Category Name>")
+        return
+
+    name = context.args[0].strip().title()
+
+    with SessionLocal() as session:
+        cat = session.query(Category).filter_by(name=name).first()
+        if not cat:
+            await update.message.reply_text(f"❌ Category **{name}** not found.", parse_mode="Markdown")
+            return
+        session.delete(cat)
+        session.commit()
+    
+    await update.message.reply_text(f"🗑️ Category **{name}** deleted.", parse_mode="Markdown")  
