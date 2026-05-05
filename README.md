@@ -21,12 +21,12 @@
    ```bash
    git clone <your-repo-url>
    cd telegram_fin_bot
-```
+
 
 2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
-```
+
 
 3. **Configure Secrets**:
    Copy `.env.example` to a new file named `.env` and fill in your keys[cite: 12]:
@@ -35,8 +35,7 @@
    GEMINI_API_KEY=your_gemini_key
    DATABASE_URL=postgresql://user:password@localhost:5432/finance_db
    ADMIN_SECRET_PIN=123456
-   
-```
+
 
 ### 4. Database Initialization (Migrations)
 Since this project uses Alembic for version control, do not use manual table creation[cite: 12]. 
